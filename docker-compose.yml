@@ -32,16 +32,16 @@ services:
     depends_on:
       - db
 
-  springboot:
-    build: ./springboot-java-fullstack
-    ports:
-      - "8080:8080"  # Host : Container
-    depends_on:
-      - db
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/fullstack
-      SPRING_DATASOURCE_USERNAME: user
-      SPRING_DATASOURCE_PASSWORD: password
+#  springboot:
+#    build: ./springboot-java-fullstack
+#    ports:
+#      - "8080:8080"  # Host : Container
+#    depends_on:
+#      - db
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/fullstack
+#      SPRING_DATASOURCE_USERNAME: user
+#      SPRING_DATASOURCE_PASSWORD: password
 
 volumes:
   db_data:
