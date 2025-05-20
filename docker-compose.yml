@@ -1,11 +1,10 @@
-# AI acknowledgement - used ai to generate starter config
 version: '3.8'
 
 services:
   web:
     image: php:8.2-apache
     ports:
-      - "8080:80"
+      - "8083:80"  # moved off 8080 to avoid conflict
     volumes:
       - ./www:/var/www/html
     depends_on:
@@ -26,12 +25,23 @@ services:
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
-      - 8081:80
+      - "8081:80"
     environment:
       PMA_HOST: db
       MYSQL_ROOT_PASSWORD: rootpass
     depends_on:
       - db
+
+  springboot:
+    build: ./springboot-java-fullstack
+    ports:
+      - "8080:8080"  # Host : Container
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/fullstack
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: password
 
 volumes:
   db_data:
